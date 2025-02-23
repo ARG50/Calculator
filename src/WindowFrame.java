@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WindowFrame extends JFrame {
-    private int frameWidth = 360;
+    private int frameWidth = 400;
     private int frameHeight = 550;
 
     JPanel displayPanel = new JPanel();
@@ -20,7 +20,7 @@ public class WindowFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.setSize(frameWidth, frameHeight);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setLocationRelativeTo(null);
         this.setTitle("My Calculator");
 
@@ -35,6 +35,6 @@ public class WindowFrame extends JFrame {
         displayPanel.add(displayLabel);
         this.add(displayPanel, BorderLayout.NORTH);
 
-        this.setVisible(true);
+
     }
 }
