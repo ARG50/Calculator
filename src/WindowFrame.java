@@ -5,6 +5,7 @@ public class WindowFrame extends JFrame {
     private int frameWidth = 400;
     private int frameHeight = 550;
 
+    JScrollPane displayScrollPanel = new JScrollPane();
     JPanel displayPanel = new JPanel();
     JLabel displayLabel = new JLabel();
 
@@ -29,12 +30,20 @@ public class WindowFrame extends JFrame {
         displayLabel.setFont(new Font("Arial", Font.PLAIN, 80));
         displayLabel.setHorizontalAlignment(JLabel.RIGHT);
         displayLabel.setText("0");
+//        displayLabel.setAutoscrolls(true);
         displayLabel.setOpaque(true);
 
         displayPanel.setLayout(new BorderLayout());
-        displayPanel.add(displayLabel);
-        this.add(displayPanel, BorderLayout.NORTH);
+//        displayPanel.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
 
+        displayPanel.add(displayLabel);
+        displayScrollPanel.getViewport().setView(displayPanel);
+
+//        displayScrollPanel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        displayScrollPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        displayScrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        this.add(displayScrollPanel, BorderLayout.NORTH);
 
     }
 }
