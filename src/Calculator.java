@@ -75,24 +75,24 @@ public class Calculator {
                         {
                             if(A != null && op != null)
                             {
-                                B = myFrame.displayLabel.getText();
+                                B = myFrame.displayTextfield.getText();
                                 double numA = Double.parseDouble(A);
                                 double numB = Double.parseDouble(B);
                                 if(op == "+")
                                 {
-                                    myFrame.displayLabel.setText(checkWholeNum(numA+numB));
+                                    myFrame.displayTextfield.setText(checkWholeNum(numA+numB));
                                 }
                                 else if(op == "-")
                                 {
-                                    myFrame.displayLabel.setText(checkWholeNum(numA-numB));
+                                    myFrame.displayTextfield.setText(checkWholeNum(numA-numB));
                                 }
                                 else if(op == "×")
                                 {
-                                    myFrame.displayLabel.setText(checkWholeNum(numA*numB));
+                                    myFrame.displayTextfield.setText(checkWholeNum(numA*numB));
                                 }
                                 else if(op == "÷")
                                 {
-                                    myFrame.displayLabel.setText(checkWholeNum(numA/numB));
+                                    myFrame.displayTextfield.setText(checkWholeNum(numA/numB));
                                 }
                                 clearAllDigits();
                             }
@@ -102,9 +102,9 @@ public class Calculator {
                             if(op == null)
                             {
                                 // Must be implemented for display with op.
-                                A = myFrame.displayLabel.getText();
+                                A = myFrame.displayTextfield.getText();
 //                                String temp;
-                                myFrame.displayLabel.setText("0");
+                                myFrame.displayTextfield.setText("0");
                                 B = "0";
                             }
                             op = buttonValue;
@@ -119,21 +119,21 @@ public class Calculator {
                         if(buttonValue == "AC")
                         {
                             clearAllDigits();
-                            myFrame.displayLabel.setText("0");
+                            myFrame.displayTextfield.setText("0");
                         }
                         else if(buttonValue == "+/-")
                         {
-                            double displayedNum = Double.parseDouble(myFrame.displayLabel.getText());
+                            double displayedNum = Double.parseDouble(myFrame.displayTextfield.getText());
                             displayedNum *= -1;
-                            myFrame.displayLabel.setText(checkWholeNum(displayedNum));
+                            myFrame.displayTextfield.setText(checkWholeNum(displayedNum));
                         }
                         else if(buttonValue == "%")
                         {
                             // Must be implemented later (100 - 25%) = 75
 
-                            double displayedNum = Double.parseDouble(myFrame.displayLabel.getText());
+                            double displayedNum = Double.parseDouble(myFrame.displayTextfield.getText());
                             displayedNum /= 100;
-                            myFrame.displayLabel.setText(checkWholeNum(displayedNum));
+                            myFrame.displayTextfield.setText(checkWholeNum(displayedNum));
                         }
                     }
                     else
@@ -141,27 +141,27 @@ public class Calculator {
                         // Num Digits or decimal point
                         if(buttonValue == ".")
                         {
-                            if(!myFrame.displayLabel.getText().contains(buttonValue))
+                            if(!myFrame.displayTextfield.getText().contains(buttonValue))
                             {
-                                myFrame.displayLabel.setText(myFrame.displayLabel.getText()+buttonValue);
+                                myFrame.displayTextfield.setText(myFrame.displayTextfield.getText()+buttonValue);
                             }
                         }
                         else if(buttonValue == "√")
                         {
-                            if(!myFrame.displayLabel.getText().contains(buttonValue))
+                            if(!myFrame.displayTextfield.getText().contains(buttonValue))
                             {
-                                myFrame.displayLabel.setText(buttonValue+myFrame.displayLabel.getText());
+                                myFrame.displayTextfield.setText(buttonValue+myFrame.displayTextfield.getText());
                             }
                         }
                         else if("0123456789".contains(buttonValue))
                         {
-                            if(myFrame.displayLabel.getText() == "0")
+                            if(myFrame.displayTextfield.getText() == "0")
                             {
-                                myFrame.displayLabel.setText(buttonValue);
+                                myFrame.displayTextfield.setText(buttonValue);
                             }
                             else
                             {
-                                myFrame.displayLabel.setText(myFrame.displayLabel.getText()+buttonValue);
+                                myFrame.displayTextfield.setText(myFrame.displayTextfield.getText()+buttonValue);
                             }
                         }
                     }

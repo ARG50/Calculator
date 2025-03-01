@@ -7,7 +7,7 @@ public class WindowFrame extends JFrame {
 
     JScrollPane displayScrollPanel = new JScrollPane();
     JPanel displayPanel = new JPanel();
-    JLabel displayLabel = new JLabel();
+    JTextField displayTextfield = new JTextField();
 
     // Reference from Iphone Calculator colors.
     protected Color customLightGrey = new Color(212, 212,210);
@@ -25,18 +25,18 @@ public class WindowFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("My Calculator");
 
-        displayLabel.setBackground(customBlack);
-        displayLabel.setForeground(Color.WHITE);
-        displayLabel.setFont(new Font("Arial", Font.PLAIN, 80));
-        displayLabel.setHorizontalAlignment(JLabel.RIGHT);
-        displayLabel.setText("0");
+        displayTextfield.setBackground(customBlack);
+        displayTextfield.setForeground(Color.WHITE);
+        displayTextfield.setFont(new Font("Arial", Font.PLAIN, 80));
+        displayTextfield.setHorizontalAlignment(JLabel.RIGHT);
+        displayTextfield.setText("0");
 //        displayLabel.setAutoscrolls(true);
-        displayLabel.setOpaque(true);
+        displayTextfield.setOpaque(true);
 
         displayPanel.setLayout(new BorderLayout());
 //        displayPanel.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
 
-        displayPanel.add(displayLabel);
+        displayPanel.add(displayTextfield);
         displayScrollPanel.getViewport().setView(displayPanel);
 
 //        displayScrollPanel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
