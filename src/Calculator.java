@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
+import javax.management.StringValueExp;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -12,15 +13,17 @@ public class Calculator {
     JPanel buttonPanel = new JPanel();
 
     String[] buttonValues = {
-            "AC", "+/-", "%", "÷",
+            "1/x", "+/-", "C", "AC",
+            "x²", "√", "%", "÷",
             "7", "8", "9", "×",
             "4", "5", "6", "-",
             "1", "2", "3", "+",
-            "0", ".", "√", "="
+            ".", "0", "D/L", "="
     };
 
-    String[] rightSymbols = {"÷", "×", "-", "+", "="};
-    String[] topSymbols = {"AC", "+/-", "%"};
+    String[] rightSymbols = {"AC", "÷", "×", "-", "+", "="};
+    String[] topSymbols = {"1/x", "+/-", "C"};
+    String[] sRowSymbols = {"x²", "√", "%"};
 
     // A+B, A*B, A-B, A/B
     String A = "0";
@@ -33,7 +36,7 @@ public class Calculator {
         myFrame = new WindowFrame();
         myFrame.setIconImage(calcIcon);
 
-        buttonPanel.setLayout(new GridLayout(5, 4));
+        buttonPanel.setLayout(new GridLayout(6, 4));
         buttonPanel.setBackground(myFrame.customBlack);
 
         // Set all buttons from String values to button panel.
@@ -55,6 +58,11 @@ public class Calculator {
                 button.setBackground(myFrame.customOrange);
                 button.setForeground(Color.WHITE);
             }
+            else if(Arrays.asList(sRowSymbols).contains(buttonValue))
+            {
+                button.setBackground(myFrame.customLightGrey);
+                button.setForeground(myFrame.customBlack);
+            }
             else
             {
                 button.setBackground(myFrame.customDarkGrey);
@@ -73,7 +81,18 @@ public class Calculator {
                     {
                         if (buttonValue == "=")
                         {
-                            if(A != null && op != null)
+                            if(op == "√")
+                            {
+                                double numA = Double.parseDouble(A);
+                                myFrame.displayTextfield.setText(Double.toString(Math.sqrt(numA)));
+                                clearAllDigits();
+                            }
+                            else if(op == "1/x")
+                            {
+
+//                                clearAllDigits();
+                            }
+                            else if(A != null && op != null)
                             {
                                 B = myFrame.displayTextfield.getText();
                                 double numA = Double.parseDouble(A);
@@ -94,38 +113,62 @@ public class Calculator {
                                 {
                                     myFrame.displayTextfield.setText(checkWholeNum(numA/numB));
                                 }
+                                // All Values reset is needed.
                                 clearAllDigits();
                             }
                         }
+
                         else if("+-÷×".contains(buttonValue))
                         {
                             if(op == null)
                             {
                                 // Must be implemented for display with op.
                                 A = myFrame.displayTextfield.getText();
-//                                String temp;
                                 myFrame.displayTextfield.setText("0");
                                 B = "0";
                             }
                             op = buttonValue;
                         }
-                        else
+                        else if(buttonValue == "AC")
                         {
-
+                            clearAllDigits();
+                            myFrame.displayTextfield.setText("0");
                         }
                     }
                     else if(Arrays.asList(topSymbols).contains(buttonValue))
                     {
-                        if(buttonValue == "AC")
+                        if(buttonValue == "1/x")
                         {
-                            clearAllDigits();
-                            myFrame.displayTextfield.setText("0");
+
                         }
                         else if(buttonValue == "+/-")
                         {
                             double displayedNum = Double.parseDouble(myFrame.displayTextfield.getText());
                             displayedNum *= -1;
                             myFrame.displayTextfield.setText(checkWholeNum(displayedNum));
+                        }
+                        else if(buttonValue == "C")
+                        {
+
+                        }
+                    }
+                    else if(Arrays.asList(sRowSymbols).contains(buttonValue))
+                    {
+                        if(buttonValue == "x²")
+                        {
+
+                        }
+                        else if(buttonValue == "√")
+                        {
+                            if(!myFrame.displayTextfield.getText().contains(buttonValue))
+                            {
+                                if(op == null) {
+                                    A = myFrame.displayTextfield.getText();
+                                    B = "0";
+                                }
+                                op = buttonValue;
+                                myFrame.displayTextfield.setText(buttonValue+A);
+                            }
                         }
                         else if(buttonValue == "%")
                         {
@@ -146,13 +189,7 @@ public class Calculator {
                                 myFrame.displayTextfield.setText(myFrame.displayTextfield.getText()+buttonValue);
                             }
                         }
-                        else if(buttonValue == "√")
-                        {
-                            if(!myFrame.displayTextfield.getText().contains(buttonValue))
-                            {
-                                myFrame.displayTextfield.setText(buttonValue+myFrame.displayTextfield.getText());
-                            }
-                        }
+
                         else if("0123456789".contains(buttonValue))
                         {
                             if(myFrame.displayTextfield.getText() == "0")
@@ -163,6 +200,11 @@ public class Calculator {
                             {
                                 myFrame.displayTextfield.setText(myFrame.displayTextfield.getText()+buttonValue);
                             }
+                        }
+                        // Theme Light & Dark Mode switch
+                        else if(buttonValue == "D/L")
+                        {
+
                         }
                     }
                 }
