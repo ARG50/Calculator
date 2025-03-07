@@ -30,7 +30,8 @@ public class WindowFrame extends JFrame {
         displayTextfield.setFont(new Font("Arial", Font.PLAIN, 80));
         displayTextfield.setHorizontalAlignment(JLabel.RIGHT);
         displayTextfield.setText("0");
-//        displayTextfield.setEditable(false);
+        displayTextfield.setEditable(false);
+//        displayTextfield.getCaret().set;
 //        displayTextfield.setCursor();
         displayTextfield.setOpaque(true);
 

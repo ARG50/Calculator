@@ -79,37 +79,36 @@ public class Calculator {
 
                     if(Arrays.asList(rightSymbols).contains(buttonValue))
                     {
-                        if (buttonValue == "=")
+                        if (buttonValue.equals("="))
                         {
-                            if(op == "√")
+                            if(op.equals("√"))
                             {
                                 double numA = Double.parseDouble(A);
                                 myFrame.displayTextfield.setText(Double.toString(Math.sqrt(numA)));
                                 clearAllDigits();
                             }
-                            else if(op == "1/x")
+                            else if(op.equals("1/x"))
                             {
 
-//                                clearAllDigits();
                             }
                             else if(A != null && op != null)
                             {
                                 B = myFrame.displayTextfield.getText();
                                 double numA = Double.parseDouble(A);
                                 double numB = Double.parseDouble(B);
-                                if(op == "+")
+                                if(op.equals("+"))
                                 {
                                     myFrame.displayTextfield.setText(checkWholeNum(numA+numB));
                                 }
-                                else if(op == "-")
+                                else if(op.equals("-"))
                                 {
                                     myFrame.displayTextfield.setText(checkWholeNum(numA-numB));
                                 }
-                                else if(op == "×")
+                                else if(op.equals("×"))
                                 {
                                     myFrame.displayTextfield.setText(checkWholeNum(numA*numB));
                                 }
-                                else if(op == "÷")
+                                else if(op.equals("÷"))
                                 {
                                     myFrame.displayTextfield.setText(checkWholeNum(numA/numB));
                                 }
@@ -129,7 +128,7 @@ public class Calculator {
                             }
                             op = buttonValue;
                         }
-                        else if(buttonValue == "AC")
+                        else if(buttonValue.equals("AC"))
                         {
                             clearAllDigits();
                             myFrame.displayTextfield.setText("0");
@@ -137,40 +136,41 @@ public class Calculator {
                     }
                     else if(Arrays.asList(topSymbols).contains(buttonValue))
                     {
-                        if(buttonValue == "1/x")
+                        if(buttonValue.equals("1/x"))
                         {
 
                         }
-                        else if(buttonValue == "+/-")
+                        else if(buttonValue.equals("+/-"))
                         {
                             double displayedNum = Double.parseDouble(myFrame.displayTextfield.getText());
                             displayedNum *= -1;
                             myFrame.displayTextfield.setText(checkWholeNum(displayedNum));
                         }
-                        else if(buttonValue == "C")
+                        else if(buttonValue.equals("C"))
                         {
 
                         }
                     }
                     else if(Arrays.asList(sRowSymbols).contains(buttonValue))
                     {
-                        if(buttonValue == "x²")
+                        if(buttonValue.equals("x²"))
                         {
 
                         }
-                        else if(buttonValue == "√")
+                        else if(buttonValue.equals("√"))
                         {
                             if(!myFrame.displayTextfield.getText().contains(buttonValue))
                             {
                                 if(op == null) {
                                     A = myFrame.displayTextfield.getText();
                                     B = "0";
+                                    op = buttonValue;
+                                    myFrame.displayTextfield.setText(buttonValue+A);
                                 }
-                                op = buttonValue;
-                                myFrame.displayTextfield.setText(buttonValue+A);
+
                             }
                         }
-                        else if(buttonValue == "%")
+                        else if(buttonValue.equals("%"))
                         {
                             // Must be implemented later (100 - 25%) = 75
 
@@ -182,7 +182,7 @@ public class Calculator {
                     else
                     {
                         // Num Digits or decimal point
-                        if(buttonValue == ".")
+                        if(buttonValue.equals("."))
                         {
                             if(!myFrame.displayTextfield.getText().contains(buttonValue))
                             {
@@ -192,7 +192,7 @@ public class Calculator {
 
                         else if("0123456789".contains(buttonValue))
                         {
-                            if(myFrame.displayTextfield.getText() == "0")
+                            if(myFrame.displayTextfield.getText().equals("0"))
                             {
                                 myFrame.displayTextfield.setText(buttonValue);
                             }
@@ -202,7 +202,7 @@ public class Calculator {
                             }
                         }
                         // Theme Light & Dark Mode switch
-                        else if(buttonValue == "D/L")
+                        else if(buttonValue.equals("D/L"))
                         {
 
                         }
@@ -222,7 +222,7 @@ public class Calculator {
         A = "0";
         op = null;
         B = null;
-
+        // All values are reset to default.
     }
     private String checkWholeNum(double displayedNum)
     {
